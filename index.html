@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>jdgrid apps</title>
+<style>
+  :root{
+    --paper1:#FFF5E9; --paper2:#F7E7D0; --ink:#3B342C; --inkSoft:#74685A;
+    --sun:#F2AE55; --mint:#8FCBAA; --pink:#F08CA0; --card:#FFF8EF; --line:rgba(59,52,44,.14);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",
+      "Noto Sans KR",Roboto,sans-serif;
+    background:linear-gradient(180deg,var(--paper1),var(--paper2));
+    display:flex; flex-direction:column; align-items:center;
+    padding:64px 20px 80px;
+  }
+  .sun{width:52px;height:52px;margin-bottom:14px}
+  h1{font-size:30px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
+  .sub{color:var(--inkSoft);font-size:15px;margin:0 0 40px}
+  .wrap{width:100%;max-width:440px}
+  .app{
+    background:var(--card);border:2px solid var(--line);
+    border-radius:22px;padding:20px 22px;margin-bottom:16px;
+  }
+  .app-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .badge{font-size:26px;line-height:1}
+  .app-name{font-size:19px;font-weight:800}
+  .app-desc{color:var(--inkSoft);font-size:14px;margin:0}
+  .links{display:flex;gap:10px;margin-top:14px}
+  .pill{
+    font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);
+    padding:7px 14px;border-radius:999px;border:1.6px solid var(--line);background:#fff;
+  }
+  .pill:hover{border-color:var(--mint)}
+  footer{margin-top:32px;color:var(--inkSoft);font-size:12px;text-align:center}
+  footer a{color:var(--inkSoft)}
+</style>
+</head>
+<body>
+  <svg class="sun" viewBox="0 0 44 44" aria-hidden="true">
+    <circle cx="22" cy="22" r="9" fill="#F2AE55" stroke="#3B342C" stroke-width="2.4"/>
+    <g stroke="#3B342C" stroke-width="2.4" stroke-linecap="round">
+      <line x1="22" y1="3" x2="22" y2="9"/><line x1="22" y1="35" x2="22" y2="41"/>
+      <line x1="3" y1="22" x2="9" y2="22"/><line x1="35" y1="22" x2="41" y2="22"/>
+      <line x1="8.5" y1="8.5" x2="12.5" y2="12.5"/><line x1="31.5" y1="31.5" x2="35.5" y2="35.5"/>
+      <line x1="35.5" y1="8.5" x2="31.5" y2="12.5"/><line x1="12.5" y1="31.5" x2="8.5" y2="35.5"/>
+    </g>
+  </svg>
+  <h1>jdgrid apps</h1>
+  <p class="sub">작고 다정한 앱들 · little apps, made with care</p>
+
+  <div class="wrap">
+    <div class="app">
+      <div class="app-top">
+        <span class="badge">🌷</span>
+        <span class="app-name">몽글 · Monggle</span>
+      </div>
+      <p class="app-desc">하루 한 문장, 손으로 쓴 다정함 · A gentle line a day.</p>
+      <div class="links">
+        <a class="pill" href="./monggle/support/">지원 · Support</a>
+        <a class="pill" href="./monggle/privacy/">개인정보 · Privacy</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 jdgrid · <a href="mailto:support@jdgrid.com">support@jdgrid.com</a></footer>
+</body>
+</html>

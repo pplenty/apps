@@ -4,140 +4,57 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>jdgrid apps</title>
+<title>jdgrid</title>
 <style>
   :root{
-    --bg1:#050A14; --bg2:#0B1B2E; --pearl:#EFF6FB; --mist:#9FB4C6;
-    --haze:#5E7186; --glow:#57F0E6; --rose:#FF9FB6; --mintw:#8FE388;
-    --card:rgba(255,255,255,.045); --line:rgba(255,255,255,.12);
+    --bg:#0C0E12; --fg:#EDEFF2; --dim:#8B93A1; --faint:#3C424E;
+    --line:rgba(255,255,255,.1);
   }
   *{box-sizing:border-box}
   body{
-    margin:0; min-height:100vh; color:var(--pearl);
+    margin:0; min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--fg);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",
       "Noto Sans KR",Roboto,sans-serif;
     background:
-      radial-gradient(1100px 520px at 78% -10%, rgba(87,240,230,.12), transparent 60%),
-      radial-gradient(900px 600px at 10% 108%, rgba(120,90,255,.12), transparent 60%),
-      linear-gradient(180deg,var(--bg2),var(--bg1) 55%);
-    background-attachment:fixed;
-    display:flex; flex-direction:column; align-items:center;
-    padding:72px 20px 80px; position:relative; overflow-x:hidden;
+      radial-gradient(820px 480px at 50% -12%, rgba(255,255,255,.05), transparent 60%),
+      var(--bg);
+    padding:40px 20px;
   }
-  body::before{ /* starfield */
-    content:""; position:fixed; inset:0; pointer-events:none; opacity:.75;
-    background-image:
-      radial-gradient(1.4px 1.4px at 12% 18%, #fff 45%, transparent 55%),
-      radial-gradient(1.1px 1.1px at 72% 9%, #cfeffb 45%, transparent 55%),
-      radial-gradient(1.6px 1.6px at 88% 34%, #fff 45%, transparent 55%),
-      radial-gradient(1px 1px at 33% 42%, #bfe9ff 45%, transparent 55%),
-      radial-gradient(1.3px 1.3px at 57% 63%, #fff 45%, transparent 55%),
-      radial-gradient(1px 1px at 9% 71%, #d8f6ff 45%, transparent 55%),
-      radial-gradient(1.5px 1.5px at 81% 82%, #fff 45%, transparent 55%),
-      radial-gradient(1px 1px at 44% 89%, #cfeffb 45%, transparent 55%),
-      radial-gradient(1.2px 1.2px at 22% 55%, #fff 45%, transparent 55%),
-      radial-gradient(1px 1px at 64% 28%, #e6fbff 45%, transparent 55%),
-      radial-gradient(1px 1px at 91% 58%, #fff 45%, transparent 55%),
-      radial-gradient(1.2px 1.2px at 5% 36%, #e6fbff 45%, transparent 55%);
+  main{text-align:center}
+  .mark{
+    display:grid; grid-template-columns:repeat(3, 9px); gap:8px;
+    justify-content:center; margin-bottom:28px;
   }
-  /* glowing focus-ring mark */
-  .ring{position:relative; width:64px; height:64px; margin-bottom:18px}
-  .ring .track{
-    position:absolute; inset:0; border-radius:50%;
-    border:4px solid rgba(255,255,255,.10);
+  .mark span{width:9px;height:9px;border-radius:50%;background:var(--faint)}
+  .mark span:nth-child(5){
+    background:var(--fg);
+    box-shadow:0 0 10px rgba(237,239,242,.55);
   }
-  .ring .arc{
-    position:absolute; inset:0; border-radius:50%;
-    background:conic-gradient(from 0deg, var(--glow) 0 42%, transparent 42% 100%);
-    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 4px));
-            mask:radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 4px));
-    filter:drop-shadow(0 0 8px rgba(87,240,230,.65));
+  h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.4px}
+  .sub{color:var(--dim);font-size:14px;margin:0 0 34px}
+  .mail{
+    display:inline-block; font-size:14px; font-weight:700;
+    color:var(--fg); text-decoration:none;
+    padding:9px 18px; border:1px solid var(--line); border-radius:999px;
+    transition:border-color .2s, background .2s;
   }
-  .ring .dot{
-    position:absolute; top:50%; left:50%; width:10px; height:10px; border-radius:50%;
-    background:#fff; box-shadow:0 0 10px var(--glow), 0 0 22px var(--glow);
-    transform:translate(-50%,-50%) rotate(151deg) translateY(-30px);
-  }
-  h1{font-size:30px;margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
-  .sub{color:var(--mist);font-size:15px;margin:0 0 44px}
-  .wrap{width:100%;max-width:460px;position:relative}
-  .app{
-    background:var(--card); border:1px solid var(--line);
-    border-radius:22px; padding:20px 22px; margin-bottom:16px;
-    backdrop-filter:blur(6px);
-    transition:border-color .25s, box-shadow .25s, transform .25s;
-  }
-  .app:hover{transform:translateY(-2px)}
-  .app.trance:hover{border-color:rgba(87,240,230,.5); box-shadow:0 6px 30px rgba(87,240,230,.12)}
-  .app.monggle:hover{border-color:rgba(255,159,182,.5); box-shadow:0 6px 30px rgba(255,159,182,.10)}
-  .app.saegeun:hover{border-color:rgba(143,227,136,.5); box-shadow:0 6px 30px rgba(143,227,136,.10)}
-  .app-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-  .badge{font-size:24px;line-height:1}
-  .app-name{font-size:19px;font-weight:800}
-  .tag{
-    font-size:10px;font-weight:800;letter-spacing:1px;color:#06251f;
-    background:linear-gradient(135deg,var(--glow),#9ff5d8);
-    border-radius:999px;padding:3px 9px;margin-left:2px;
-    box-shadow:0 0 12px rgba(87,240,230,.4);
-  }
-  .app-desc{color:var(--mist);font-size:14px;margin:0}
-  .links{display:flex;gap:10px;margin-top:14px}
-  .pill{
-    font-size:13px;font-weight:700;text-decoration:none;color:var(--pearl);
-    padding:7px 14px;border-radius:999px;border:1px solid var(--line);
-    background:rgba(255,255,255,.05); transition:border-color .2s, color .2s;
-  }
-  .pill:hover{border-color:var(--glow); color:var(--glow)}
-  footer{margin-top:36px;color:var(--haze);font-size:12px;text-align:center;position:relative}
-  footer a{color:var(--haze)}
+  .mail:hover{border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.04)}
+  footer{margin-top:44px;color:var(--faint);font-size:12px}
 </style>
 </head>
 <body>
-  <div class="ring" aria-hidden="true">
-    <div class="track"></div>
-    <div class="arc"></div>
-    <div class="dot"></div>
-  </div>
-  <h1>jdgrid apps</h1>
-  <p class="sub">작고 다정한 앱들 · little apps, made with care</p>
-
-  <div class="wrap">
-    <div class="app trance">
-      <div class="app-top">
-        <span class="badge">✦</span>
-        <span class="app-name">trance · 트랜스</span>
-        <span class="tag">NEW</span>
-      </div>
-      <p class="app-desc">집중할수록 자라는 나만의 은하 · Focus, and your galaxy grows.</p>
-      <div class="links">
-        <a class="pill" href="./trance/support/">지원 · Support</a>
-        <a class="pill" href="./trance/privacy/">개인정보 · Privacy</a>
-      </div>
+  <main>
+    <div class="mark" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
     </div>
-    <div class="app monggle">
-      <div class="app-top">
-        <span class="badge">🌷</span>
-        <span class="app-name">몽글 · Monggle</span>
-      </div>
-      <p class="app-desc">하루 한 문장, 손으로 쓴 다정함 · A gentle line a day.</p>
-      <div class="links">
-        <a class="pill" href="./monggle/support/">지원 · Support</a>
-        <a class="pill" href="./monggle/privacy/">개인정보 · Privacy</a>
-      </div>
-    </div>
-    <div class="app saegeun">
-      <div class="app-top">
-        <span class="badge">🍼</span>
-        <span class="app-name">새근새근 · Saegeun</span>
-      </div>
-      <p class="app-desc">부부가 함께 쓰는 아기 기록 · A baby-care log for couples.</p>
-      <div class="links">
-        <a class="pill" href="./saegeun/support/">지원 · Support</a>
-        <a class="pill" href="./saegeun/privacy/">개인정보 · Privacy</a>
-      </div>
-    </div>
-  </div>
-
-  <footer>© 2026 jdgrid · <a href="mailto:support@jdgrid.com">support@jdgrid.com</a></footer>
+    <h1>jdgrid</h1>
+    <p class="sub">작고 다정한 앱들을 만듭니다 · little apps, made with care</p>
+    <a class="mail" href="mailto:support@jdgrid.com">support@jdgrid.com</a>
+    <footer>© 2026 jdgrid</footer>
+  </main>
 </body>
 </html>

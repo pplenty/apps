@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="새근새근(Hushabye) 가족 초대 — 초대 코드를 확인하고 앱에서 참여하세요.">
+  <!-- app-argument 는 아래 스크립트에서 현재 URL(코드 포함)로 갱신한다 -->
+  <meta name="apple-itunes-app" content="app-id=6789875279">
+  <title>새근새근 초대</title>
+  <link rel="canonical" href="https://apps.jdgrid.com/saegeun/invite/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <!--
+    주의: 이 페이지는 privacy/support 와 달리 언어별 하위 경로로 리다이렉트하지
+    않는다. locale.js 라우터는 리다이렉트 시 URL 해시를 지우는데, 초대 코드가
+    해시(#123456)에 실려 오기 때문. 대신 한 페이지에서 ko/en 문구를 전환한다.
+    이 URL(/saegeun/invite*)은 앱의 Universal Link 대상이기도 하다 (.well-known/
+    apple-app-site-association) — 경로를 바꾸면 앱 라우팅도 함께 바꿔야 한다.
+  -->
+  <style>
+    .invite-code-box {
+      margin: 20px 0 6px;
+      padding: 22px;
+      text-align: center;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-radius: 18px;
+    }
+    .invite-code-label {
+      margin: 0 0 6px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+    .invite-code {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: 10px;
+      text-indent: 10px; /* letter-spacing 우측 보정 */
+      font-variant-numeric: tabular-nums;
+    }
+    .copy-btn {
+      margin-top: 12px;
+      padding: 9px 22px;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { border-color: var(--mint); }
+    .store-btn {
+      display: block;
+      margin: 18px auto 0;
+      max-width: 320px;
+      padding: 14px 18px;
+      color: #fff;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      background: var(--leaf);
+      border-radius: 14px;
+    }
+    .store-btn:hover { opacity: 0.92; }
+    .steps { margin: 0 0 12px; padding-left: 24px; }
+    .steps li { margin-bottom: 8px; }
+    .invite-note { margin-top: 18px; color: var(--ink-soft); font-size: 13px; }
+    .lang-switch {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .lang-switch button {
+      padding: 0;
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 13px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .lang-switch button[aria-current="true"] {
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-color: var(--mint);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="page-header">
+      <p class="crumb"><a href="../support/" data-t="supportLink">지원</a></p>
+      <nav class="lang-switch" aria-label="언어 선택">
+        <button type="button" data-set-locale="ko" lang="ko">한국어</button>
+        <button type="button" data-set-locale="en" lang="en">English</button>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <span class="badge" aria-hidden="true">🍼</span>
+      <h1 data-t="title">새근새근에 초대받았어요</h1>
+    </div>
+    <p class="tag" data-t="tag">부부가 함께 쓰는 아기 기록</p>
+
+    <section class="invite-code-box" id="code-box" aria-live="polite">
+      <p class="invite-code-label" data-t="codeLabel">초대 코드</p>
+      <p class="invite-code" id="code">······</p>
+      <button type="button" class="copy-btn" id="copy" data-t="copy">코드 복사</button>
+    </section>
+    <section class="invite-code-box hidden" id="no-code">
+      <p data-t="noCode">초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.</p>
+    </section>
+
+    <a class="store-btn" id="store"
+       href="https://apps.apple.com/app/id6789875279"
+       data-t="store">App Store에서 받기</a>
+
+    <section aria-labelledby="how-title">
+      <h2 id="how-title" data-t="howTitle">참여 방법</h2>
+      <ol class="steps">
+        <li data-t="step1">위 버튼으로 앱을 설치해 주세요.</li>
+        <li data-t="step2">Apple 또는 Google 계정으로 로그인해 주세요.</li>
+        <li data-t="step3">이 페이지 링크를 한 번 더 열면 참여 화면이 자동으로 떠요. 코드를 직접 입력해도 돼요.</li>
+      </ol>
+    </section>
+
+    <p class="invite-note" data-t="note">초대 코드는 만든 순간부터 72시간 동안 유효해요 · Android 버전은 준비 중이에요</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var strings = {
+        ko: {
+          htmlTitle: "새근새근 초대",
+          supportLink: "지원",
+          title: "새근새근에 초대받았어요",
+          tag: "부부가 함께 쓰는 아기 기록",
+          codeLabel: "초대 코드",
+          copy: "코드 복사",
+          copied: "복사됐어요!",
+          noCode: "초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.",
+          store: "App Store에서 받기",
+          howTitle: "참여 방법",
+          step1: "위 버튼으로 앱을 설치해 주세요.",
+          step2: "Apple 또는 Google 계정으로 로그인해 주세요.",
+          step3: "이 페이지 링크를 한 번 더 열면 참여 화면이 자동으로 떠요. 코드를 직접 입력해도 돼요.",
+          note: "초대 코드는 만든 순간부터 72시간 동안 유효해요 · Android 버전은 준비 중이에요"
+        },
+        en: {
+          htmlTitle: "You're invited to Hushabye",
+          supportLink: "Support",
+          title: "You're invited to Hushabye",
+          tag: "The baby tracker made for couples",
+          codeLabel: "Invite code",
+          copy: "Copy code",
+          copied: "Copied!",
+          noCode: "This invite link is missing its code. Ask your partner to send it again.",
+          store: "Get it on the App Store",
+          howTitle: "How to join",
+          step1: "Install the app with the button above.",
+          step2: "Sign in with Apple or Google.",
+          step3: "Open this link once more — the join screen appears automatically. Or just type the code in the app.",
+          note: "Invite codes are valid for 72 hours · Android version coming soon"
+        }
+      };
+
+      var storageKey = "saegeun-locale"; // privacy/support 라우터와 공유
+      var current = "ko";
+
+      function normalize(locale) {
+        var lang = String(locale || "").toLowerCase().split("-")[0];
+        return lang === "ko" ? "ko" : lang === "en" ? "en" : null;
+      }
+
+      function detect() {
+        var stored = null;
+        try { stored = normalize(localStorage.getItem(storageKey)); } catch (e) {}
+        if (stored) return stored;
+        var langs = navigator.languages || [navigator.language];
+        for (var i = 0; i < langs.length; i += 1) {
+          var l = normalize(langs[i]);
+          if (l) return l;
+        }
+        return "en";
+      }
+
+      function apply(locale) {
+        current = locale;
+        var t = strings[locale];
+        document.documentElement.lang = locale;
+        document.title = t.htmlTitle;
+        document.querySelectorAll("[data-t]").forEach(function (el) {
+          var key = el.getAttribute("data-t");
+          if (t[key]) el.textContent = t[key];
+        });
+        document.querySelectorAll("[data-set-locale]").forEach(function (btn) {
+          btn.setAttribute(
+            "aria-current",
+            btn.getAttribute("data-set-locale") === locale ? "true" : "false"
+          );
+        });
+      }
+
+      document.querySelectorAll("[data-set-locale]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var locale = btn.getAttribute("data-set-locale");
+          try { localStorage.setItem(storageKey, locale); } catch (e) {}
+          apply(locale);
+        });
+      });
+
+      // 초대 코드: URL 해시(#123456)에서 읽는다. 해시는 서버로 전송되지 않아
+      // 코드가 서버 로그에 남지 않는다.
+      var match = /^#?(\d{6})$/.exec(window.location.hash || "");
+      var code = match ? match[1] : null;
+
+      if (code) {
+        document.getElementById("code").textContent = code;
+        // 설치돼 있으면 Safari 스마트 배너 '열기'가 코드까지 앱에 전달하도록
+        var banner = document.querySelector('meta[name="apple-itunes-app"]');
+        banner.setAttribute(
+          "content",
+          "app-id=6789875279, app-argument=" + window.location.href
+        );
+        document.getElementById("copy").addEventListener("click", function () {
+          var btn = this;
+          function done() {
+            btn.textContent = strings[current].copied;
+            setTimeout(function () { btn.textContent = strings[current].copy; }, 1600);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(done, done);
+          } else { done(); }
+        });
+      } else {
+        document.getElementById("code-box").classList.add("hidden");
+        document.getElementById("no-code").classList.remove("hidden");
+      }
+
+      apply(detect());
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "XP9F4X6C96.com.pplenty.babylog",
+          "XP9F4X6C96.com.pplenty.babylog.dev"
+        ],
+        "components": [
+          { "/": "/saegeun/invite*" }
+        ]
+      }
+    ]
+  }
+}

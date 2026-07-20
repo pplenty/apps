@@ -1,0 +1,27 @@
+:root {
+  --page-start: #fff8ee;
+  --page-end: #f6e9d6;
+  --ink: #3b342c;
+  --soft: #766a5c;
+  --accent: #4eaa7b;
+  --accent-soft: rgba(78, 170, 123, 0.14);
+  --surface: #fffdf8;
+  --card: rgba(255, 250, 241, 0.86);
+  --line: rgba(59, 52, 44, 0.13);
+  --shadow: rgba(94, 70, 46, 0.1);
+  --panel: #3c352c;
+  --panel-ink: #fffaf1;
+  --panel-soft: #d8cbbb;
+  --blob-a: rgba(127, 207, 164, 0.34);
+  --blob-b: rgba(244, 174, 85, 0.28);
+}
+
+.theme-monggle.product-page {
+  background:
+    radial-gradient(circle at 12% 7%, rgba(143, 203, 170, 0.28), transparent 29%),
+    radial-gradient(circle at 88% 3%, rgba(240, 140, 160, 0.2), transparent 27%),
+    #fffaf2;
+}
+
+.theme-monggle .product-hero h1 em { color: #e17f91; }
+.theme-monggle .hero-shot { border-radius: 38px; }

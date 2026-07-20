@@ -1,0 +1,49 @@
+:root {
+  --page-start: #071120;
+  --page-end: #030711;
+  --ink: #eff7fb;
+  --soft: #9fb4c6;
+  --accent: #57f0e6;
+  --accent-soft: rgba(87, 240, 230, 0.12);
+  --surface: #121d2a;
+  --card: rgba(255, 255, 255, 0.055);
+  --line: rgba(255, 255, 255, 0.12);
+  --shadow: rgba(0, 0, 0, 0.28);
+  --panel: #0b1b2e;
+  --panel-ink: #eff7fb;
+  --panel-soft: #9fb4c6;
+  --blob-a: rgba(87, 240, 230, 0.2);
+  --blob-b: rgba(120, 90, 255, 0.22);
+}
+
+.theme-trance.product-page,
+.theme-trance.document-page {
+  background:
+    radial-gradient(900px 520px at 80% -5%, rgba(87, 240, 230, 0.11), transparent 60%),
+    radial-gradient(800px 560px at 8% 105%, rgba(120, 90, 255, 0.12), transparent 60%),
+    linear-gradient(180deg, #0b1b2e, #030711 58%);
+  background-attachment: fixed;
+}
+
+.theme-trance.product-page::before,
+.theme-trance.document-page::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.65;
+  background-image:
+    radial-gradient(1.3px 1.3px at 12% 18%, #fff 45%, transparent 55%),
+    radial-gradient(1px 1px at 72% 9%, #cfeffb 45%, transparent 55%),
+    radial-gradient(1.5px 1.5px at 88% 34%, #fff 45%, transparent 55%),
+    radial-gradient(1px 1px at 33% 42%, #bfe9ff 45%, transparent 55%),
+    radial-gradient(1.2px 1.2px at 57% 63%, #fff 45%, transparent 55%),
+    radial-gradient(1px 1px at 9% 71%, #d8f6ff 45%, transparent 55%),
+    radial-gradient(1.4px 1.4px at 81% 82%, #fff 45%, transparent 55%);
+}
+
+.theme-trance.document-page > * { position: relative; z-index: 1; }
+.theme-trance .hero-shot { border-radius: 28px; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5); }
+.theme-trance .screens-section { background: rgba(13, 31, 50, 0.7); }
+.theme-trance .coming-soon { color: var(--ink); background: rgba(255, 255, 255, 0.08); }

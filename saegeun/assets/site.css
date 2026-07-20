@@ -98,6 +98,14 @@ a {
   line-height: 1;
 }
 
+.page-app-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 13px;
+  box-shadow: 0 6px 20px rgba(46, 60, 51, 0.12);
+}
+
 h1 {
   margin: 0;
   font-size: 25px;

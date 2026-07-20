@@ -56,35 +56,47 @@
       cursor: pointer;
     }
     .copy-btn:hover { border-color: var(--mint); }
-    .store-btn {
+    /* 버튼은 역할(주/보조)로만 스타일이 정해진다 — 어느 버튼이 주인공인지는
+       유입 경로에 따라 스크립트가 클래스를 바꿔 결정한다 */
+    .btn {
       display: block;
-      margin: 18px auto 0;
       max-width: 320px;
+      margin: 0 auto;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 14px;
+    }
+    .btn-primary {
+      margin-top: 18px;
       padding: 14px 18px;
       color: #fff;
-      text-align: center;
       font-size: 16px;
       font-weight: 800;
-      text-decoration: none;
       background: var(--leaf);
-      border-radius: 14px;
+      border: 2px solid var(--leaf);
     }
-    .store-btn:hover { opacity: 0.92; }
-    .app-open-btn {
-      display: block;
-      margin: 10px auto 0;
-      max-width: 320px;
+    .btn-primary:hover { opacity: 0.92; }
+    .btn-secondary {
+      margin-top: 10px;
       padding: 12px 18px;
       color: var(--ink);
-      text-align: center;
       font-size: 15px;
       font-weight: 700;
-      text-decoration: none;
       background: var(--surface);
       border: 2px solid var(--line);
+    }
+    .btn-secondary:hover { border-color: var(--mint); }
+    /* 인앱 브라우저 안내 — 카카오톡 등에서만 노출 */
+    .inapp-note {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      color: var(--ink-soft);
+      font-size: 13px;
+      text-align: center;
+      background: var(--surface);
+      border: 2px dashed var(--line);
       border-radius: 14px;
     }
-    .app-open-btn:hover { border-color: var(--mint); }
     .steps { margin: 0 0 12px; padding-left: 24px; }
     .steps li { margin-bottom: 8px; }
     .invite-note { margin-top: 18px; color: var(--ink-soft); font-size: 13px; }
@@ -139,13 +151,23 @@
       <p data-t="noCode">초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.</p>
     </section>
 
-    <a class="store-btn" id="store"
-       href="https://apps.apple.com/app/id6789875279"
-       data-t="store">App Store에서 받기</a>
-    <!-- 커스텀 스킴 — 카톡 등 인앱 브라우저는 Universal Link 를 안 태우므로
-         설치된 사용자를 위한 직접 진입 경로. 코드가 있을 때만 노출 -->
-    <a class="app-open-btn hidden" id="open-app" href="#"
-       data-t="openApp">이미 설치했다면 앱에서 열기</a>
+    <!-- 인앱 브라우저(카카오톡 등)에서만 — 왜 앱이 자동으로 안 열리는지 -->
+    <p class="inapp-note hidden" id="inapp-note" data-t="inappNote">
+      카카오톡에서는 앱이 자동으로 열리지 않아요. 아래 버튼을 눌러주세요.
+    </p>
+    <!-- 두 버튼의 순서·강조는 스크립트가 유입 경로에 맞춰 바꾼다.
+         기본(Safari 등): 앱 설치자는 Universal Link 로 이미 앱이 열렸을
+         테니 '받기'가 주인공. 인앱 브라우저: 링크가 앱을 못 여니 '앱에서
+         열기'가 주인공. -->
+    <div id="actions">
+      <a class="btn btn-primary" id="store"
+         href="https://apps.apple.com/app/id6789875279"
+         data-t="store">App Store에서 받기</a>
+      <!-- 커스텀 스킴 — 인앱 브라우저는 Universal Link 를 안 태우므로
+           설치된 사용자를 위한 직접 진입 경로. 코드가 있을 때만 노출 -->
+      <a class="btn btn-secondary hidden" id="open-app" href="#"
+         data-t="openApp">이미 설치했다면 앱에서 열기</a>
+    </div>
 
     <section aria-labelledby="how-title">
       <h2 id="how-title" data-t="howTitle">참여 방법</h2>
@@ -175,6 +197,9 @@
           noCode: "초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.",
           store: "App Store에서 받기",
           openApp: "이미 설치했다면 앱에서 열기",
+          openAppPrimary: "새근새근 앱에서 열기",
+          storeSecondary: "아직 없다면 App Store에서 받기",
+          inappNote: "카카오톡에서는 앱이 자동으로 열리지 않아요. 아래 버튼을 눌러주세요.",
           howTitle: "참여 방법",
           step1: "위 버튼으로 앱을 설치해 주세요.",
           step2: "Apple 또는 Google 계정으로 로그인해 주세요.",
@@ -192,6 +217,9 @@
           noCode: "This invite link is missing its code. Ask your partner to send it again.",
           store: "Get it on the App Store",
           openApp: "Already installed? Open the app",
+          openAppPrimary: "Open in Hushabye",
+          storeSecondary: "Don't have it yet? Get it on the App Store",
+          inappNote: "This in-app browser can't open the app for you. Use the button below.",
           howTitle: "How to join",
           step1: "Install the app with the button above.",
           step2: "Sign in with Apple or Google.",
@@ -254,11 +282,33 @@
         if (hashMatch) code = hashMatch[1];
       }
 
+      // 인앱 브라우저(카카오톡·라인·네이버·인스타 등)는 Universal Link 를
+      // 태우지 않아 링크를 눌러도 앱이 열리지 않는다. 자동 리다이렉트는
+      // 미설치 사용자에게 시스템 에러 팝업을 띄우므로 쓰지 않고, 대신
+      // '앱에서 열기'를 주 버튼으로 끌어올린다 (배치만 바꿈 — 부작용 없음).
+      var inAppBrowser =
+        /KAKAOTALK|DaumApps|NAVER|Line\/|Instagram|FBAN|FBAV|FB_IAB/i.test(
+          navigator.userAgent || ""
+        );
+
       if (code) {
         document.getElementById("code").textContent = code;
         var openApp = document.getElementById("open-app");
         openApp.href = "babylog:///saegeun/invite?code=" + code;
         openApp.classList.remove("hidden");
+
+        if (inAppBrowser) {
+          var store = document.getElementById("store");
+          var actions = document.getElementById("actions");
+          // 순서 교체 + 주/보조 강조 교체
+          actions.insertBefore(openApp, store);
+          openApp.className = "btn btn-primary";
+          store.className = "btn btn-secondary";
+          // 문구도 역할에 맞게 (apply 가 data-t 기준으로 채운다)
+          openApp.setAttribute("data-t", "openAppPrimary");
+          store.setAttribute("data-t", "storeSecondary");
+          document.getElementById("inapp-note").classList.remove("hidden");
+        }
         // 설치돼 있으면 Safari 스마트 배너 '열기'가 코드까지 앱에 전달하도록
         var banner = document.querySelector('meta[name="apple-itunes-app"]');
         banner.setAttribute(

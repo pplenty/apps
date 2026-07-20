@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="../assets/site.css">
   <!--
     주의: 이 페이지는 privacy/support 와 달리 언어별 하위 경로로 리다이렉트하지
-    않는다. locale.js 라우터는 리다이렉트 시 URL 해시를 지우는데, 초대 코드가
-    해시(#123456)에 실려 오기 때문. 대신 한 페이지에서 ko/en 문구를 전환한다.
-    이 URL(/saegeun/invite*)은 앱의 Universal Link 대상이기도 하다 (.well-known/
-    apple-app-site-association) — 경로를 바꾸면 앱 라우팅도 함께 바꿔야 한다.
+    않는다. locale.js 라우터는 리다이렉트 시 쿼리·해시를 지우는데, 초대 코드가
+    URL(?code=123456)에 실려 오기 때문. 대신 한 페이지에서 ko/en 문구를 전환한다.
+    코드는 ?code= 쿼리가 기본 — 해시(#123456)는 iOS 딥링크 전달에서 유실됨을
+    실기 확인(2026-07-20)해 레거시 수용만 한다. 앱 쪽 단일 진실은
+    app/lib/core/invite_link.dart. 이 URL(/saegeun/invite*)은 Universal Link
+    대상이기도 하다 (.well-known/apple-app-site-association).
   -->
   <style>
     .invite-code-box {
@@ -222,10 +224,14 @@
         });
       });
 
-      // 초대 코드: URL 해시(#123456)에서 읽는다. 해시는 서버로 전송되지 않아
-      // 코드가 서버 로그에 남지 않는다.
-      var match = /^#?(\d{6})$/.exec(window.location.hash || "");
-      var code = match ? match[1] : null;
+      // 초대 코드: ?code= 쿼리가 기본, 구형 해시(#123456) 링크도 수용
+      var code = null;
+      var queryMatch = /[?&]code=(\d{6})(?:&|$)/.exec(window.location.search || "");
+      if (queryMatch) code = queryMatch[1];
+      if (!code) {
+        var hashMatch = /^#?(\d{6})$/.exec(window.location.hash || "");
+        if (hashMatch) code = hashMatch[1];
+      }
 
       if (code) {
         document.getElementById("code").textContent = code;

@@ -70,6 +70,21 @@
       border-radius: 14px;
     }
     .store-btn:hover { opacity: 0.92; }
+    .app-open-btn {
+      display: block;
+      margin: 10px auto 0;
+      max-width: 320px;
+      padding: 12px 18px;
+      color: var(--ink);
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+    }
+    .app-open-btn:hover { border-color: var(--mint); }
     .steps { margin: 0 0 12px; padding-left: 24px; }
     .steps li { margin-bottom: 8px; }
     .invite-note { margin-top: 18px; color: var(--ink-soft); font-size: 13px; }
@@ -110,7 +125,7 @@
     </header>
 
     <div class="hero">
-      <span class="badge" aria-hidden="true">🍼</span>
+      <img class="page-app-icon" src="../assets/media/app-icon.png" width="46" height="46" alt="">
       <h1 data-t="title">새근새근에 초대받았어요</h1>
     </div>
     <p class="tag" data-t="tag">부부가 함께 쓰는 아기 기록</p>
@@ -127,6 +142,10 @@
     <a class="store-btn" id="store"
        href="https://apps.apple.com/app/id6789875279"
        data-t="store">App Store에서 받기</a>
+    <!-- 커스텀 스킴 — 카톡 등 인앱 브라우저는 Universal Link 를 안 태우므로
+         설치된 사용자를 위한 직접 진입 경로. 코드가 있을 때만 노출 -->
+    <a class="app-open-btn hidden" id="open-app" href="#"
+       data-t="openApp">이미 설치했다면 앱에서 열기</a>
 
     <section aria-labelledby="how-title">
       <h2 id="how-title" data-t="howTitle">참여 방법</h2>
@@ -155,6 +174,7 @@
           copied: "복사됐어요!",
           noCode: "초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.",
           store: "App Store에서 받기",
+          openApp: "이미 설치했다면 앱에서 열기",
           howTitle: "참여 방법",
           step1: "위 버튼으로 앱을 설치해 주세요.",
           step2: "Apple 또는 Google 계정으로 로그인해 주세요.",
@@ -171,6 +191,7 @@
           copied: "Copied!",
           noCode: "This invite link is missing its code. Ask your partner to send it again.",
           store: "Get it on the App Store",
+          openApp: "Already installed? Open the app",
           howTitle: "How to join",
           step1: "Install the app with the button above.",
           step2: "Sign in with Apple or Google.",
@@ -235,6 +256,9 @@
 
       if (code) {
         document.getElementById("code").textContent = code;
+        var openApp = document.getElementById("open-app");
+        openApp.href = "babylog:///saegeun/invite?code=" + code;
+        openApp.classList.remove("hidden");
         // 설치돼 있으면 Safari 스마트 배너 '열기'가 코드까지 앱에 전달하도록
         var banner = document.querySelector('meta[name="apple-itunes-app"]');
         banner.setAttribute(

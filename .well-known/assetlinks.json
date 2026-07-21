@@ -1,0 +1,23 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pplenty.babylog",
+      "sha256_cert_fingerprints": [
+        "48:82:4F:71:3A:AA:E4:E2:B8:D7:20:A8:BD:D8:20:D1:FD:B7:86:8B:73:BD:58:2D:F1:58:87:7A:86:C0:7E:AC"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pplenty.babylog.dev",
+      "sha256_cert_fingerprints": [
+        "39:A0:3B:91:BE:08:F6:07:EE:D4:C4:E8:AF:F5:3C:53:92:02:C4:7A:29:49:7E:D5:53:38:D1:5E:2D:37:65:54",
+        "48:82:4F:71:3A:AA:E4:E2:B8:D7:20:A8:BD:D8:20:D1:FD:B7:86:8B:73:BD:58:2D:F1:58:87:7A:86:C0:7E:AC"
+      ]
+    }
+  }
+]

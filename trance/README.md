@@ -11,9 +11,19 @@ Each section root is a language router. Shared layout and routing live in `/asse
 ## App Store
 
 - App ID: `6788048067`
-- Status checked on 2026-07-20: not returned by App Store lookup in Korea, the United States, or Japan
+- Live since 2026-07-27 in the Korean, US, and Japanese storefronts
 
-Keep the coming-soon CTA until the public listing resolves. When it does, replace the status element in all three product pages with a localized App Store link.
+Each product page links to the storefront that matches its language, so the visitor lands on a page written in the language they are already reading:
+
+| Page | Store link |
+| --- | --- |
+| `/trance/ko/` | `https://apps.apple.com/kr/app/id6788048067` |
+| `/trance/en/` | `https://apps.apple.com/us/app/id6788048067` |
+| `/trance/ja/` | `https://apps.apple.com/jp/app/id6788048067` |
+
+The short `/{country}/app/id{id}` form is used on purpose — it never breaks when the App Store title changes, unlike the slug form Apple copies to the clipboard.
+
+Each page carries the badge in its own locale (`/assets/badges/app-store-white-{ko-kr|en-us|ja-jp}.svg`, downloaded from Apple's badge service) plus the Apple trademark line in the footer, as Apple's identity guidelines require. The white badge is used because the Trance pages are dark; a light-themed app should use a black badge instead.
 
 ## Asset sources
 

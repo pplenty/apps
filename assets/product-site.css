@@ -313,6 +313,28 @@ li { margin-bottom: 7px; }
 
 .availability { margin: 12px 0 0; color: var(--soft); font-size: 13px; }
 
+.download-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 18px; }
+.app-store-badge { display: block; width: auto; height: 56px; }
+.availability-note { margin: 0; color: var(--soft); font-size: 13px; line-height: 1.5; }
+
+.store-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 850;
+  white-space: nowrap;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.store-cta:hover { color: var(--accent); border-color: var(--accent); }
+
 .hero-visual { position: relative; min-height: 610px; }
 
 .hero-visual::before {
@@ -461,11 +483,13 @@ li { margin-bottom: 7px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
 .footer-links a { color: var(--soft); font-weight: 750; text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
+.apple-legal { max-width: 760px; margin: 20px 0 0; color: var(--soft); font-size: 11px; line-height: 1.55; opacity: 0.75; }
 
 @media (max-width: 900px) {
   .product-hero { grid-template-columns: 1fr; padding-top: 64px; text-align: center; }
   .hero-description { margin-inline: auto; }
   .hero-visual { width: min(530px, 100%); margin: 0 auto; }
+  .download-row { justify-content: center; }
   .feature-grid { grid-template-columns: 1fr; }
   .feature-card { min-height: 0; }
 }
@@ -483,6 +507,9 @@ li { margin-bottom: 7px; }
   .product-hero h1 { font-size: clamp(40px, 12vw, 54px); letter-spacing: -2.4px; }
   .mobile-break { display: block; }
   .hero-description { font-size: 17px; }
+  .download-row { flex-direction: column; }
+  .app-store-badge { height: 52px; }
+  .store-cta { width: 100%; justify-content: center; }
   .hero-visual { min-height: 500px; }
   .hero-shot-primary { left: 4%; width: min(255px, 68%); }
   .hero-shot-secondary { right: 2%; width: min(180px, 48%); }

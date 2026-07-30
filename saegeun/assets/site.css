@@ -400,6 +400,12 @@ body.marketing-page {
   height: 56px;
 }
 
+.google-play-badge {
+  display: block;
+  width: auto;
+  height: 56px;
+}
+
 .availability-note {
   margin: 0;
   color: var(--ink-soft);

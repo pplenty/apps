@@ -178,7 +178,7 @@
       </ol>
     </section>
 
-    <p class="invite-note" data-t="note">초대 코드는 만든 순간부터 72시간 동안 유효해요 · Android 버전은 준비 중이에요</p>
+    <p class="invite-note" data-t="note">초대 코드는 만든 순간부터 72시간 동안 유효해요</p>
   </main>
 
   <script>
@@ -196,15 +196,17 @@
           copied: "복사됐어요!",
           noCode: "초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.",
           store: "App Store에서 받기",
+          storeAndroid: "Google Play에서 받기",
           openApp: "이미 설치했다면 앱에서 열기",
           openAppPrimary: "새근새근 앱에서 열기",
           storeSecondary: "아직 없다면 App Store에서 받기",
+          storeSecondaryAndroid: "아직 없다면 Google Play에서 받기",
           inappNote: "카카오톡에서는 앱이 자동으로 열리지 않아요. 아래 버튼을 눌러주세요.",
           howTitle: "참여 방법",
           step1: "위 버튼으로 앱을 설치해 주세요.",
           step2: "Apple 또는 Google 계정으로 로그인해 주세요.",
           step3: "이 페이지 링크를 한 번 더 열면 참여 화면이 자동으로 떠요. 코드를 직접 입력해도 돼요.",
-          note: "초대 코드는 만든 순간부터 72시간 동안 유효해요 · Android 버전은 준비 중이에요"
+          note: "초대 코드는 만든 순간부터 72시간 동안 유효해요"
         },
         en: {
           htmlTitle: "You're invited to Hushabye",
@@ -216,15 +218,17 @@
           copied: "Copied!",
           noCode: "This invite link is missing its code. Ask your partner to send it again.",
           store: "Get it on the App Store",
+          storeAndroid: "Get it on Google Play",
           openApp: "Already installed? Open the app",
           openAppPrimary: "Open in Hushabye",
           storeSecondary: "Don't have it yet? Get it on the App Store",
+          storeSecondaryAndroid: "Don't have it yet? Get it on Google Play",
           inappNote: "This in-app browser can't open the app for you. Use the button below.",
           howTitle: "How to join",
           step1: "Install the app with the button above.",
           step2: "Sign in with Apple or Google.",
           step3: "Open this link once more — the join screen appears automatically. Or just type the code in the app.",
-          note: "Invite codes are valid for 72 hours · Android version coming soon"
+          note: "Invite codes are valid for 72 hours"
         }
       };
 
@@ -291,6 +295,17 @@
           navigator.userAgent || ""
         );
 
+      // 이 페이지는 초대받은 배우자의 폰에서 열린다 — OS 에 맞는 스토어로.
+      // (Android 출시 2026-07-31. babylog:// 스킴은 Android 매니페스트에도
+      // 등록돼 있어 '앱에서 열기' 경로는 양쪽 동일하게 동작한다)
+      var isAndroid = /Android/i.test(navigator.userAgent || "");
+      if (isAndroid) {
+        var storeBtn = document.getElementById("store");
+        storeBtn.href =
+          "https://play.google.com/store/apps/details?id=com.pplenty.babylog";
+        storeBtn.setAttribute("data-t", "storeAndroid");
+      }
+
       if (code) {
         document.getElementById("code").textContent = code;
         var openApp = document.getElementById("open-app");
@@ -306,7 +321,7 @@
           store.className = "btn btn-secondary";
           // 문구도 역할에 맞게 (apply 가 data-t 기준으로 채운다)
           openApp.setAttribute("data-t", "openAppPrimary");
-          store.setAttribute("data-t", "storeSecondary");
+          store.setAttribute("data-t", isAndroid ? "storeSecondaryAndroid" : "storeSecondary");
           document.getElementById("inapp-note").classList.remove("hidden");
         }
         // 설치돼 있으면 Safari 스마트 배너 '열기'가 코드까지 앱에 전달하도록

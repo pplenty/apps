@@ -1,0 +1,26 @@
+:root {
+  --page-start: #0d0d0d;
+  --page-end: #050505;
+  --ink: #f5f2ea;
+  --soft: #b9b3a4;
+  --accent: #ffd629;
+  --accent-soft: rgba(255, 214, 41, 0.12);
+  --surface: #171614;
+  --card: rgba(255, 255, 255, 0.05);
+  --line: rgba(255, 255, 255, 0.12);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --panel: #171614;
+  --panel-ink: #f5f2ea;
+  --panel-soft: #b9b3a4;
+  --blob-a: rgba(255, 214, 41, 0.14);
+  --blob-b: rgba(255, 122, 41, 0.1);
+}
+
+.theme-dailystamp.product-page,
+.theme-dailystamp.document-page {
+  background:
+    radial-gradient(900px 520px at 82% -5%, rgba(255, 214, 41, 0.08), transparent 60%),
+    radial-gradient(760px 540px at 6% 105%, rgba(255, 122, 41, 0.07), transparent 60%),
+    linear-gradient(180deg, #121110, #050505 58%);
+  background-attachment: fixed;
+}

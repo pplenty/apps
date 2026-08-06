@@ -3,7 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const apps = ["saegeun", "monggle", "trance"];
+const apps = ["saegeun", "monggle", "trance", "harmonica"];
 const sections = ["", "support", "privacy"];
 const locales = ["ko", "en", "ja"];
 const errors = [];

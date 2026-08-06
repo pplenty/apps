@@ -1,0 +1,28 @@
+:root {
+  --page-start: #fff8f3;
+  --page-end: #f1e4d6;
+  --ink: #211a15;
+  --soft: #6b5c4e;
+  --accent: #8a5f30;
+  --accent-soft: rgba(138, 95, 48, 0.13);
+  --surface: #fffdfa;
+  --card: rgba(255, 252, 247, 0.87);
+  --line: rgba(33, 26, 21, 0.14);
+  --shadow: rgba(86, 62, 38, 0.13);
+  --panel: #241c16;
+  --panel-ink: #f7ece2;
+  --panel-soft: #cab7a5;
+  --blob-a: rgba(232, 199, 154, 0.45);
+  --blob-b: rgba(82, 99, 90, 0.24);
+}
+
+.theme-harmonica.product-page {
+  background:
+    radial-gradient(circle at 10% 6%, rgba(232, 199, 154, 0.4), transparent 30%),
+    radial-gradient(circle at 90% 2%, rgba(82, 99, 90, 0.16), transparent 28%),
+    #fff8f3;
+}
+
+.theme-harmonica .product-hero h1 em { color: #2e7d4f; }
+.theme-harmonica .hero-shot { border-radius: 30px; }
+.theme-harmonica .app-icon { border-radius: 16px; }

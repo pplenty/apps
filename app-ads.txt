@@ -1,0 +1,4 @@
+# IAB app-ads.txt — apps.jdgrid.com is the developer website listed on the Play Store,
+# so AdMob crawls this file at the domain root. One file covers every app whose store
+# listing points here; add a line per ad network, not per app.
+google.com, pub-1005049417920340, DIRECT, f08c47fec0942fa0

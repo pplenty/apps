@@ -315,6 +315,11 @@ li { margin-bottom: 7px; }
 
 .download-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 18px; }
 .app-store-badge { display: block; width: auto; height: 56px; }
+
+/* Google's badge ships with its own clear space baked into the image. The negative
+   left margin only pulls that padding back to the text column; nothing is placed
+   inside the clear space itself. */
+.play-badge { display: block; width: auto; height: 82px; margin-left: -13px; }
 .availability-note { margin: 0; color: var(--soft); font-size: 13px; line-height: 1.5; }
 
 .store-cta {
@@ -483,7 +488,8 @@ li { margin-bottom: 7px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
 .footer-links a { color: var(--soft); font-weight: 750; text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
-.apple-legal { max-width: 760px; margin: 20px 0 0; color: var(--soft); font-size: 11px; line-height: 1.55; opacity: 0.75; }
+.apple-legal,
+.store-legal { max-width: 760px; margin: 20px 0 0; color: var(--soft); font-size: 11px; line-height: 1.55; opacity: 0.75; }
 
 @media (max-width: 900px) {
   .product-hero { grid-template-columns: 1fr; padding-top: 64px; text-align: center; }
@@ -509,6 +515,7 @@ li { margin-bottom: 7px; }
   .hero-description { font-size: 17px; }
   .download-row { flex-direction: column; }
   .app-store-badge { height: 52px; }
+  .play-badge { height: 76px; margin-left: 0; }
   .store-cta { width: 100%; justify-content: center; }
   .hero-visual { min-height: 500px; }
   .hero-shot-primary { left: 4%; width: min(255px, 68%); }

@@ -49,13 +49,27 @@ only where bending is the only way, 430–450 Hz reference, C4/C3 naming, in-app
 switching, and purchase restore through the Google Play account. Menu labels quoted on
 the pages match `res/values{,-ja,-ko}/strings.xml`.
 
-## Store CTA
+## Google Play
 
-The pages currently say "Coming soon on Google Play" — the app has no Play Console
-listing yet. When it publishes, replace the two `.coming-soon` elements on each product
-page with a Google Play badge and a store link, the way `/trance` links to the App Store.
-Badges must come from Google's own badge assets, and Google's brand guidelines require
-the badge, not a styled text button.
+- Package: `com.pplenty.harmonica`
+- Live since 2026-08-09 as "Harmonica Tuner & Practice"
+
+Each product page links to the listing in its own language through `hl`:
+
+| Page | Store link |
+| --- | --- |
+| `/harmonica/en/` | `…/store/apps/details?id=com.pplenty.harmonica&hl=en` |
+| `/harmonica/ja/` | `…/store/apps/details?id=com.pplenty.harmonica&hl=ja` |
+| `/harmonica/ko/` | `…/store/apps/details?id=com.pplenty.harmonica&hl=ko` |
+
+The badge is Google's own asset per language
+(`/assets/badges/google-play-{en|ja|ko}.png`, downloaded from Google's badge service and
+left unmodified — the guidelines forbid recolouring or redrawing it), and the footer
+carries the Google Play trademark line the guidelines require. The badge image has its
+clear space baked in, which is why `.play-badge` is 82 px tall for a ~55 px badge.
+
+`app-ads.txt` at the domain root is what AdMob crawls for this app; the developer website
+in the listing must stay on `apps.jdgrid.com` for that to keep working.
 
 ## Asset sources
 

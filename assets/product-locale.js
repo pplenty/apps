@@ -5,9 +5,19 @@
   var supported = (root.dataset.locales || "ko,en,ja").split(",");
   var storageKey = root.dataset.localeKey || "preferred-locale";
 
+  // An exact tag wins ("zh-Hant"); otherwise the language part picks the first
+  // supported locale of that language, so "zh-TW" lands on "zh-Hant".
   function normalize(value) {
-    var language = String(value || "").toLowerCase().split("-")[0];
-    return supported.indexOf(language) >= 0 ? language : null;
+    var tag = String(value || "").toLowerCase();
+    var language = tag.split("-")[0];
+    var index;
+    for (index = 0; index < supported.length; index += 1) {
+      if (supported[index].toLowerCase() === tag) return supported[index];
+    }
+    for (index = 0; index < supported.length; index += 1) {
+      if (supported[index].toLowerCase().split("-")[0] === language) return supported[index];
+    }
+    return null;
   }
 
   function readPreference() {

@@ -3,9 +3,12 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow"];
+const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow", "sobok"];
 const sections = ["", "support", "privacy"];
 const locales = ["ko", "en", "ja"];
+// Apps with other languages than the default three. Their pages name the list in
+// data-locales so product-locale.js routes to it.
+const appLocales = { sobok: ["ko", "en", "ja", "zh-Hant"] };
 const errors = [];
 let checkedPages = 0;
 
@@ -29,7 +32,17 @@ function checkLocalTargets(file, html) {
   }
 }
 
-function checkRouter(file) {
+function localesFor(app) {
+  return appLocales[app] || locales;
+}
+
+function checkDeclaredLocales(file, html, app) {
+  if (appLocales[app] && !html.includes(`data-locales="${appLocales[app].join(",")}"`)) {
+    report(`${file}: data-locales does not list ${appLocales[app].join(",")}`);
+  }
+}
+
+function checkRouter(file, app) {
   if (!existsSync(file)) {
     report(`${file}: missing language router page`);
     return;
@@ -38,6 +51,7 @@ function checkRouter(file) {
   const html = readFileSync(file, "utf8");
   checkedPages += 1;
   checkLocalTargets(file, html);
+  checkDeclaredLocales(file, html, app);
   if (!html.includes("data-language-router")) report(`${file}: missing language router`);
 }
 
@@ -57,11 +71,12 @@ function checkLocalizedPage(app, section, locale) {
   const canonical = `https://apps.jdgrid.com/${app}/${sectionPath}${locale}/`;
   checkedPages += 1;
   checkLocalTargets(file, html);
+  checkDeclaredLocales(file, html, app);
 
   if (!html.includes(`<html lang="${locale}"`)) report(`${file}: expected html lang=${locale}`);
   if (!html.includes(`<link rel="canonical" href="${canonical}">`)) report(`${file}: incorrect canonical URL`);
 
-  for (const alternateLocale of locales) {
+  for (const alternateLocale of localesFor(app)) {
     const alternate = `hreflang="${alternateLocale}" href="https://apps.jdgrid.com/${app}/${sectionPath}${alternateLocale}/"`;
     if (!html.includes(alternate)) report(`${file}: missing hreflang=${alternateLocale}`);
   }
@@ -73,8 +88,8 @@ function checkLocalizedPage(app, section, locale) {
 
 for (const app of apps) {
   for (const section of sections) {
-    checkRouter(join(repositoryRoot, app, section, "index.html"));
-    for (const locale of locales) checkLocalizedPage(app, section, locale);
+    checkRouter(join(repositoryRoot, app, section, "index.html"), app);
+    for (const locale of localesFor(app)) checkLocalizedPage(app, section, locale);
   }
 }
 

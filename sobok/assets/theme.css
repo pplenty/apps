@@ -1,0 +1,19 @@
+:root {
+  --page-start: #fffdfc;
+  --page-end: #fff4ed;
+  --ink: #24312d;
+  --soft: #68726e;
+  --accent: #2f7c70;
+  --accent-soft: rgba(47, 124, 112, 0.13);
+  --surface: #fffdfc;
+  --card: rgba(255, 253, 252, 0.88);
+  --line: rgba(36, 49, 45, 0.13);
+  --shadow: rgba(36, 75, 69, 0.12);
+  --panel: #244b45;
+  --panel-ink: #fffdfc;
+  --panel-soft: #b9cbc6;
+  --blob-a: rgba(243, 112, 102, 0.18);
+  --blob-b: rgba(246, 200, 95, 0.26);
+}
+
+.theme-sobok .app-icon { border-radius: 12px; }

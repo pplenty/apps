@@ -32,6 +32,13 @@ body {
   line-height: 1.7;
 }
 
+/* Traditional Chinese needs its own glyph forms; the stack above would fall
+   back to the Korean or Japanese ones off Apple devices. */
+html:lang(zh-Hant) body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+    "Noto Sans TC", "Microsoft JhengHei", Roboto, sans-serif;
+}
+
 a { color: var(--ink); }
 
 .document-page {

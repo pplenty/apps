@@ -1,0 +1,19 @@
+:root {
+  --page-start: #fbf8f1;
+  --page-end: #f4efe4;
+  --ink: #4a4741;
+  --soft: #746f63;
+  --accent: #a14d31;
+  --accent-soft: rgba(217, 119, 87, 0.16);
+  --surface: #fffdf8;
+  --card: rgba(255, 253, 248, 0.88);
+  --line: rgba(74, 71, 65, 0.14);
+  --shadow: rgba(110, 82, 52, 0.12);
+  --panel: #4a4741;
+  --panel-ink: #fbf8f1;
+  --panel-soft: #d8d1c2;
+  --blob-a: rgba(217, 119, 87, 0.22);
+  --blob-b: rgba(189, 183, 166, 0.3);
+}
+
+.theme-write-meow .app-icon { border-radius: 12px; }

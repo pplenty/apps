@@ -10,6 +10,7 @@ Live: <https://apps.jdgrid.com>
 - [Monggle](monggle/README.md)
 - [Trance](trance/README.md)
 - [Harmonica](harmonica/README.md) — Android; base language is English, so its language pickers lead with English
+- [Write, Meow!](write-meow/README.md) — iPhone and Android, not launched yet; base language is English
 
 Each app uses explicit `ko`, `en`, and `ja` URLs. The section roots detect the saved or browser language and redirect to the corresponding localized page.
 

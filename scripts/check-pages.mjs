@@ -3,12 +3,14 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow", "sobok"];
+const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow", "sobok", "mintronome"];
 const sections = ["", "support", "privacy"];
 const locales = ["ko", "en", "ja"];
 // Apps with other languages than the default three. Their pages name the list in
 // data-locales so product-locale.js routes to it.
-const appLocales = { sobok: ["ko", "en", "ja", "zh-Hant"] };
+const appLocales = { sobok: ["ko", "en", "ja", "zh-Hant"], mintronome: ["en", "ko"] };
+// Apps without a product page publish only these sections.
+const appSections = { mintronome: ["support", "privacy"] };
 const errors = [];
 let checkedPages = 0;
 
@@ -34,6 +36,10 @@ function checkLocalTargets(file, html) {
 
 function localesFor(app) {
   return appLocales[app] || locales;
+}
+
+function sectionsFor(app) {
+  return appSections[app] || sections;
 }
 
 function checkDeclaredLocales(file, html, app) {
@@ -87,7 +93,7 @@ function checkLocalizedPage(app, section, locale) {
 }
 
 for (const app of apps) {
-  for (const section of sections) {
+  for (const section of sectionsFor(app)) {
     checkRouter(join(repositoryRoot, app, section, "index.html"), app);
     for (const locale of localesFor(app)) checkLocalizedPage(app, section, locale);
   }

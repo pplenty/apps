@@ -1,0 +1,47 @@
+:root {
+  color-scheme: dark;
+  --page-start: #111715;
+  --page-end: #111715;
+  --ink: #edf2e9;
+  --soft: #b6c4b9;
+  --accent: #bdf59b;
+  --accent-soft: rgba(189, 245, 155, 0.08);
+  --surface: #16201a;
+  --card: #1d2722;
+  --line: #4d6152;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+.theme-mintronome { overflow-wrap: anywhere; }
+.theme-mintronome h1 { font-size: 1.5rem; }
+.theme-mintronome h2 { font-size: 1.125rem; }
+.theme-mintronome h3 { font-size: 1rem; }
+.theme-mintronome .doc-header { flex-wrap: wrap; gap: 12px; }
+.theme-mintronome .crumb,
+.theme-mintronome .language-nav,
+.theme-mintronome .updated,
+.theme-mintronome .redirect-note { font-size: 0.9375rem; }
+.theme-mintronome .language-nav { white-space: normal; gap: 8px; }
+.theme-mintronome .language-nav a,
+.theme-mintronome .crumb a {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+}
+.theme-mintronome a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.theme-mintronome .draft-notice {
+  margin: 0 0 24px;
+  padding: 16px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.skip-link { position: absolute; left: 16px; top: -200px; }
+.skip-link:focus { top: 8px; z-index: 2; background: var(--surface); padding: 12px; }

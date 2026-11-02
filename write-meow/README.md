@@ -27,9 +27,9 @@ badges in `/assets/badges/` and add the trademark lines to the footer, following
 
 | Page | App Store | Google Play |
 | --- | --- | --- |
-| `/write-meow/en/` | `https://apps.apple.com/us/app/id6825854008` | `…/details?id=com.yusik.be_writer&hl=en` |
-| `/write-meow/ja/` | `https://apps.apple.com/jp/app/id6825854008` | `…/details?id=com.yusik.be_writer&hl=ja` |
-| `/write-meow/ko/` | `https://apps.apple.com/kr/app/id6825854008` | `…/details?id=com.yusik.be_writer&hl=ko` |
+| `/write-meow/en/` | `https://apps.apple.com/us/app/id6829519991` | `…/details?id=com.jdgrid.writemeow&hl=en` |
+| `/write-meow/ja/` | `https://apps.apple.com/jp/app/id6829519991` | `…/details?id=com.jdgrid.writemeow&hl=ja` |
+| `/write-meow/ko/` | `https://apps.apple.com/kr/app/id6829519991` | `…/details?id=com.jdgrid.writemeow&hl=ko` |
 
 ## Store fields
 

@@ -28,3 +28,12 @@ Each page carries the badge in its own locale (`/assets/badges/app-store-white-{
 ## Asset sources
 
 The app icon and screenshots were exported from the Trance app project. Localized screenshots are stored under `assets/media/{ko|en|ja}` and resized to 516 px wide WebP files for the web.
+
+## Kept in sync with the app repo
+
+The privacy pages are the published form of `store/privacy-policy.md` in the app repo
+(`~/IdeaProjects/trance`), which also holds the App Privacy answers. They were last aligned
+with its 2026-08-21 version (1.2.2): purchase history — product identifiers from paywall,
+purchase and restore events — goes to analytics, and the Payments section describes the
+optional Trance Pro subscription. When that file changes, change all three pages here in
+the same pass.

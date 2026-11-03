@@ -3,14 +3,18 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow", "sobok", "mintronome"];
+const apps = ["saegeun", "monggle", "trance", "harmonica", "write-meow", "sobok", "mintronome", "dailystamp"];
 const sections = ["", "support", "privacy"];
 const locales = ["ko", "en", "ja"];
 // Apps with other languages than the default three. Their pages name the list in
 // data-locales so product-locale.js routes to it.
-const appLocales = { sobok: ["ko", "en", "ja", "zh-Hant"], mintronome: ["en", "ko"] };
+const appLocales = {
+  sobok: ["ko", "en", "ja", "zh-Hant"],
+  mintronome: ["en", "ko"],
+  dailystamp: ["en", "ko"],
+};
 // Apps without a product page publish only these sections.
-const appSections = { mintronome: ["support", "privacy"] };
+const appSections = { mintronome: ["support", "privacy"], dailystamp: ["support", "privacy"] };
 const errors = [];
 let checkedPages = 0;
 

@@ -18,3 +18,12 @@ Keep the coming-soon CTA until the public listing resolves. When it does, replac
 ## Asset sources
 
 The app icon and screenshots were exported from the Monggle app project. Localized screenshots are stored under `assets/media/{ko|en|ja}` and resized to 516 px wide WebP files for the web.
+
+## Kept in sync with the app repo
+
+The privacy pages are the published form of `store/privacy-policy.md` in the app repo
+(`~/IdeaProjects/quotes`), last aligned with its 2026-07-31 version: the saved quotes in the
+garden are backed up to the user's own iCloud key-value store, while themes and reminder
+settings stay on the device. The support FAQ and the product pages' trust panel say the
+same. That file has no Japanese section, so the Japanese page is translated from the Korean
+and English ones; keep the three saying the same thing.

@@ -22,9 +22,23 @@ Use ISO 639-1 language codes in URLs and metadata (`ja`, not the country code `j
 3. Update the privacy policy date in every locale when its meaning changes.
 4. Run `node scripts/check-pages.mjs` before publishing.
 
-The iOS download URL is `https://apps.apple.com/kr/app/id6789875279`. The app is
-currently distributed only through the Korean App Store; do not imply global or
-Google Play availability until those releases are live.
+## Stores
+
+The app (`com.pplenty.babylog`) is live on Google Play and in the Korean, US and Japanese
+App Store storefronts, under a different name in each:
+
+| Page | Name | App Store link |
+| --- | --- | --- |
+| `/saegeun/ko/` | 새근새근 | `https://apps.apple.com/kr/app/id6789875279` |
+| `/saegeun/en/` | Hushabye | `https://apps.apple.com/us/app/id6789875279` |
+| `/saegeun/ja/` | すやログ | `https://apps.apple.com/jp/app/id6789875279` |
+
+Each page names the app the way the store and the home screen do in that language
+(`CFBundleDisplayName` and `app_name` in the app repo), so a visitor recognizes the app they
+installed. "Saegeun" survives only as the internal name: the `[Saegeun]` tag in mail
+subjects and the parenthesized name next to the policy date. The invite landing uses the
+storefront-free `https://apps.apple.com/app/id6789875279`, which opens in the visitor's own
+storefront. The Google Play link is `https://play.google.com/store/apps/details?id=com.pplenty.babylog`.
 
 ## Adding a locale
 

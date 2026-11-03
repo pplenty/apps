@@ -15,15 +15,20 @@ Write, Meow! colors and app assets live in `/write-meow/assets`.
 **English is the base language**, as with Harmonica: the language pickers list English
 first and `x-default` resolves to English.
 
-## Before launch
+## Store status
 
-The app is not in either store yet, so the product pages show "Coming soon to the App
-Store and Google Play" instead of store badges, as Trance did before its launch. Nothing
-outside `/write-meow/` links here yet.
+- **Google Play** — live since 2026-11-04. Each product page carries the Google Play
+  badge in its own language, a "View on Google Play" link in the trust panel, and the
+  Google Play trademark line in the footer, as `harmonica/` does.
+- **App Store** — submitted 2026-11-02, not public yet. The hero still shows a "Coming
+  soon to the App Store" pill beside the Play badge.
 
-When the app goes live, replace both `coming-soon` spans on each product page with the
-badges in `/assets/badges/` and add the trademark lines to the footer, following
-`trance/` (App Store) and `harmonica/` (Google Play):
+Nothing outside `/write-meow/` links here yet.
+
+When the App Store listing resolves, replace the `coming-soon` span in each hero with the
+App Store badge from `/assets/badges/` (white badge on dark pages, black on light — see
+`trance/README.md`), placed before the Play badge, and add the Apple trademark line to the
+footer next to the Google one:
 
 | Page | App Store | Google Play |
 | --- | --- | --- |

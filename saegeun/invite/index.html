@@ -194,6 +194,7 @@
           codeLabel: "초대 코드",
           copy: "코드 복사",
           copied: "복사됐어요!",
+          copyManual: "길게 눌러 복사해 주세요",
           noCode: "초대 코드가 링크에 없어요. 보낸 분께 링크를 다시 요청해 주세요.",
           store: "App Store에서 받기",
           storeAndroid: "Google Play에서 받기",
@@ -216,6 +217,7 @@
           codeLabel: "Invite code",
           copy: "Copy code",
           copied: "Copied!",
+          copyManual: "Press and hold to copy",
           noCode: "This invite link is missing its code. Ask your partner to send it again.",
           store: "Get it on the App Store",
           storeAndroid: "Get it on Google Play",
@@ -332,13 +334,29 @@
         );
         document.getElementById("copy").addEventListener("click", function () {
           var btn = this;
-          function done() {
-            btn.textContent = strings[current].copied;
-            setTimeout(function () { btn.textContent = strings[current].copy; }, 1600);
+          function show(key, ms) {
+            btn.textContent = strings[current][key];
+            setTimeout(function () { btn.textContent = strings[current].copy; }, ms);
+          }
+          // 클립보드가 막힌 곳(인앱 브라우저·권한 거부)에서 성공으로 속이지 않는다 —
+          // 코드를 선택해 두고 직접 복사하도록 안내한다
+          function selectCode() {
+            var range = document.createRange();
+            range.selectNodeContents(document.getElementById("code"));
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+          function fallback() {
+            selectCode();
+            var copied = false;
+            try { copied = document.execCommand("copy"); } catch (e) { copied = false; }
+            if (copied) show("copied", 1600);
+            else show("copyManual", 4000);
           }
           if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(code).then(done, done);
-          } else { done(); }
+            navigator.clipboard.writeText(code).then(function () { show("copied", 1600); }, fallback);
+          } else { fallback(); }
         });
       } else {
         document.getElementById("code-box").classList.add("hidden");

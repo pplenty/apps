@@ -5,14 +5,16 @@ writing, photos and notes on books and movies. Source project: `~/orca/private-d
 
 ## URL structure
 
-- Product: `/sobok/{ko|en|ja|zh-Hant}/`
-- Support: `/sobok/support/{ko|en|ja|zh-Hant}/`
-- Privacy: `/sobok/privacy/{ko|en|ja|zh-Hant}/`
+- Product: `/sobok/{en|de|vi|es|id|ja|zh-Hans|zh-Hant|th|pt-BR|fr|ko}/`
+- Support: `/sobok/support/{en|de|vi|es|id|ja|zh-Hans|zh-Hant|th|pt-BR|fr|ko}/`
+- Privacy: `/sobok/privacy/{en|de|vi|es|id|ja|zh-Hans|zh-Hant|th|pt-BR|fr|ko}/`
 
-Each section root is a language router. **Korean is the base language**: the pickers lead
-with Korean. Sobok is the first app here with a fourth language, so every page names its
-list in `data-locales="ko,en,ja,zh-Hant"`; `product-locale.js` sends `zh-TW`, `zh-HK` and
-other Chinese browsers to `zh-Hant`.
+Each section root is a language router. **English is the base language** (since
+2026-11-04, as in the stores): the pickers lead with English and follow the stores' order.
+Every page names its twelve in `data-locales`. Sobok has both Chinese scripts, so
+`product-locale.js` picks Chinese by script and region, not list order: `zh-TW`, `zh-HK`,
+`zh-MO` and `zh-Hant-*` go to `zh-Hant`, every other Chinese browser to `zh-Hans`.
+Portuguese is written for Brazil (`pt-BR`) and also serves `pt-PT`.
 
 ## Before launch
 
@@ -27,7 +29,7 @@ each product page with the badges in `/assets/badges/` — in the generator belo
 | App Store support URL | `https://apps.jdgrid.com/sobok/support/<lang>/` per listing language |
 | App Store marketing URL | `https://apps.jdgrid.com/sobok/<lang>/` per listing language |
 | App Store privacy policy URL | `https://apps.jdgrid.com/sobok/privacy/<lang>/` per listing language |
-| Play privacy policy URL | `https://apps.jdgrid.com/sobok/privacy/ko/` |
+| Play privacy policy URL | `https://apps.jdgrid.com/sobok/privacy/en/` |
 | Play website | `https://apps.jdgrid.com/sobok/` |
 | Contact email | `sobok@jdgrid.com` |
 

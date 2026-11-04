@@ -14,6 +14,15 @@
     for (index = 0; index < supported.length; index += 1) {
       if (supported[index].toLowerCase() === tag) return supported[index];
     }
+    // Chinese splits by script, not by list order: Taiwan, Hong Kong and Macau
+    // (or an explicit Hant) read Traditional, everyone else Simplified. A site
+    // with only one of the two still lands on it through the loop below.
+    if (language === "zh") {
+      var wanted = /-(hant|tw|hk|mo)(-|$)/.test(tag) ? "zh-hant" : "zh-hans";
+      for (index = 0; index < supported.length; index += 1) {
+        if (supported[index].toLowerCase() === wanted) return supported[index];
+      }
+    }
     for (index = 0; index < supported.length; index += 1) {
       if (supported[index].toLowerCase().split("-")[0] === language) return supported[index];
     }

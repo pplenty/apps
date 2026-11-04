@@ -46,6 +46,9 @@
   if (document.documentElement.hasAttribute("data-language-router")) {
     var locale = getStoredLocale() || getBrowserLocale();
     var baseUrl = new URL(window.location.href);
+    // "/privacy/index.html" is the same router page; drop the file name so the
+    // locale lands beside it, not under it ("/privacy/index.html/ko/" is a 404).
+    baseUrl.pathname = baseUrl.pathname.replace(/index\.html$/, "");
     if (!baseUrl.pathname.endsWith("/")) baseUrl.pathname += "/";
     baseUrl.search = "";
     baseUrl.hash = "";

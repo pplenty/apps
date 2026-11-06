@@ -17,18 +17,16 @@ first and `x-default` resolves to English.
 
 ## Store status
 
-- **Google Play** — live since 2026-11-04. Each product page carries the Google Play
-  badge in its own language, a "View on Google Play" link in the trust panel, and the
-  Google Play trademark line in the footer, as `harmonica/` does.
-- **App Store** — submitted 2026-11-02, not public yet. The hero still shows a "Coming
-  soon to the App Store" pill beside the Play badge.
+Live in both stores: Google Play since 2026-11-04, the App Store since 2026-11-05.
+
+Each product page's hero carries the App Store badge and then the Google Play badge, both
+in the page's language, and the footer carries the Apple and Google trademark lines. The
+pages are light, so the App Store badge is the black one
+(`/assets/badges/app-store-black-{en-us|ja-jp|ko-kr}.svg`, Apple's official badges, the same
+files as `saegeun/`); dark pages such as `trance/` use the white one. The trust panel links
+to Google Play.
 
 Nothing outside `/write-meow/` links here yet.
-
-When the App Store listing resolves, replace the `coming-soon` span in each hero with the
-App Store badge from `/assets/badges/` (white badge on dark pages, black on light — see
-`trance/README.md`), placed before the Play badge, and add the Apple trademark line to the
-footer next to the Google one:
 
 | Page | App Store | Google Play |
 | --- | --- | --- |
